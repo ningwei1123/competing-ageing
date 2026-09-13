@@ -1,0 +1,9 @@
+descriptor,node_importance
+n_node,0.78417
+n_edge,0.011
+n_edge_el,0.00256
+edge_retention,0.12284
+edge_retention_all,0.02388
+mean_degree,0.00085
+isolated_frac,0.01677
+mean_diameter,0.03792

@@ -1,0 +1,58 @@
+Two competing ageing channels of lithium iron phosphate cathodes
+Numerical results of the scaling relations (compiled from laws.json)
+========================================================================
+
+INTERPHASE CHANNEL (diffusion-limited square-root)
+  k_LLI = 2.3421e-03   (sqrt-n coefficient)
+  k_LIN = 3.936e-06    (linear side-reaction coefficient)
+  E_a^eff = 30 kJ/mol  (activation energy)
+  k(45C)/k(25C) = 2.14  (thermal fade-rate ratio)
+  crossover n* = (k_LLI/k_LIN)^2 = 3.54e+05 cycles
+  doubling interval = 17.1 K  (4.06 % per K at 25 C)
+
+NETWORK CHANNEL (contact-fatigue survival)
+  m_fatigue = 0.80   (Basquin exponent)
+  s_fatigue = 0.45   (log-normal scatter)
+  n_be median = 6456 cycles  (p10 = 4816, p90 = 9758)
+  R^2 = 0.9989, max abs error = 5.7e-03, n = 4549
+  edge retention at EOL = 0.771
+
+PERCOLATION (electronic vs composite subnetwork)
+  f_c (10% isolation):  electronic 0.360, composite 0.620
+  f (5% isolation):     electronic 0.22,  composite 0.54
+  fragility ratio = 1.72
+  beta = 0.47  (critical exponent)
+  prefactor = 0.772
+
+PROTOCOL SCALING (lifetime and failure-mode partition)
+  EOL ~ C^a_C * A(T)^a_T * DOD^a_D
+    a_C = -1.07 +/- 0.07   (R^2 = 0.999)
+    a_T = -1.79 +/- 0.14   (R^2 = 0.999)
+    a_D = -1.52 +/- 0.04   (R^2 = 1.000)
+  share_LAM ~ C^b_C * A(T)^b_T * DOD^b_D
+    b_C = -2.63 +/- 0.49
+    b_T = -4.48 +/- 1.04
+    b_D = -0.58 +/- 0.47
+  interphase-only prediction: (1.20, 2.00, 1.70)
+
+MASTER CURVE (network-damage time)
+  LAM = H(Theta),  Theta = k_CL * n
+  exponent = 5.48  (effective over the probed window)
+  rel residual vs Theta = 23.6 %   vs cycle = 113.8 %
+  collapse gain = 4.81x   (n = 6295)
+
+DESIGN (particle size and coordination)
+  Size sweep (fixed topology), EOL vs mean diameter:
+    d = 0.154 um  ->  2252 cycles
+    d = 0.205 um  ->  3600 cycles
+    d = 0.256 um  ->  4510 cycles
+    d = 0.333 um  ->  4566 cycles
+    d = 0.410 um  ->  4175 cycles
+    d* = 0.30 um (sign switch); peak 4566 cycles at d = 0.33 um
+    local exponent +1.63 (d=0.15) -> -0.43 (d=0.41)
+  Coordination sweep (calendering), EOL vs z:
+    z = 6.41  ->  3940 cycles
+    z = 6.97  ->  4200 cycles
+    z = 7.56  ->  4500 cycles
+    z = 8.22  ->  4600 cycles
+    a_z = +0.65   (R^2 = 0.960, n = 4)

@@ -1,0 +1,120 @@
+================================================================================
+ Code File Descriptions
+ Manuscript: Two competing ageing channels of lithium iron phosphate cathodes
+================================================================================
+
+This directory contains the computation and figure code for the manuscript,
+20 files in total. The role of each file is described below.
+
+--------------------------------------------------------------------------------
+1. Computation modules (12 files)
+--------------------------------------------------------------------------------
+
+1. lfp_micro.py
+   Electrode microstructure reconstruction — builds the representative volume
+   element (RVE), packs polydisperse particles, and constructs the undirected
+   graph of solid-solid and electrolyte-wetted edges with per-node attributes.
+
+2. lfp_dataset.py
+   Coupled degradation simulator and synthetic cell population — generates 325
+   cells (varied microstructure and protocol), simulates the two-channel
+   degradation (interphase growth + contact-fatigue percolation), and emits the
+   early-life seven-channel trajectories with RUL/SOH/resistance labels.
+
+3. laws.py
+   Closed-form scaling relations and provenance checks — computes the
+   square-root interphase law, lognormal contact survival, percolation
+   thresholds, master curve, protocol power laws and design laws, each with a
+   provenance tag.
+
+4. model.py
+   Physics-guided graph-transformer network — a graph-attention microscale
+   branch and a Transformer macroscale branch fused through a multi-task head
+   with homoscedastic-uncertainty self-weighting.
+
+5. run_experiments.py
+   Training, baselines and distribution-shift protocols — trains the proposed
+   model and 7 baselines with 5-fold cross-validation, and runs the
+   unseen-temperature and unseen-life-range grouped protocols.
+
+6. analysis.py
+   Interpretability and physical-attribution analysis — extracts the temporal
+   self-attention profiles, node-descriptor permutation importance and
+   sequence-channel importance from the trained model.
+
+7. micro_stats.py
+   As-built network statistics — computes the microstructure statistics (size
+   distribution, coordination number, direct-contact fraction, isolated
+   fraction) reported in Supplementary Table 1.
+
+8. probe_struct.py
+   Probes the Severson struct .mat format and parses the per-cycle summary
+   fields (QDischarge / IR / temperature).
+
+9. severson_validate.py
+   Main Severson external validation — Experiment D (cycle-life distribution),
+   B2 (single-feature model reproduction, RMSE 103/138/196) and A' (early-fade
+   square-root fit).
+
+10. severson_b1.py
+    Experiment B1 — zero-shot transfer of the simulation-trained Transformer-only
+    model (seven channels) to real Severson trajectories.
+
+11. severson_b3.py
+    Experiment B3 — Severson retraining. B3a reproduces the 9-feature
+    elastic-net full model; B3b trains a deep MLP on the same features.
+
+12. severson_struct_validate.py
+    Severson struct parsing + Experiment A (full square-root fit) + C
+    (resistance-partition law) + B1 (seven-channel zero-shot).
+
+--------------------------------------------------------------------------------
+2. Figure modules (7 files)
+--------------------------------------------------------------------------------
+
+13. fig_nc.py
+    Composite main figures (Fig 1-7, Nature Communications layout) — collapses
+    the single-panel figures into the seven main figures (three new composites:
+    Fig 1/5/6).
+
+14. fig_laws.py
+    Scaling-relation figures (data and panels for Fig 2-4) — protocol scaling,
+    contact survival and percolation.
+
+15. fig_model.py
+    Model-performance figures (data and panels for Fig 5) — prediction scatter,
+    model comparison, ablation and generalisation.
+
+16. fig_results.py
+    Shared result panels (palette, task ordering, labels) reused by fig_nc.
+
+17. fig_science.py
+    Scientific illustrations (multiscale microstructure, crystal structure,
+    degradation mechanisms, graph abstraction), providing the
+    electrode-reconstruction / graph-building helpers used by fig_nc.
+
+18. fig_severson.py
+    Severson validation figures (life distribution, single-feature reproduction,
+    early fade).
+
+19. fig_attention_sup.py
+    Attention-profile supplementary figure (Supplementary Fig 1 — temporal
+    self-attention profile and four-head attention heatmap).
+
+--------------------------------------------------------------------------------
+3. Verification (1 file)
+--------------------------------------------------------------------------------
+
+20. verify_claims.py
+    Numeric verification suite — checks every numeric claim in the manuscript
+    against the produced results and prints PASS/FAIL.
+
+--------------------------------------------------------------------------------
+Notes
+--------------------------------------------------------------------------------
+- Run order: lfp_micro.py -> lfp_dataset.py -> laws.py -> run_experiments.py ->
+  analysis.py -> micro_stats.py -> verify_claims.py; the fig_*.py scripts run
+  after the results are produced.
+- Dependencies: Python 3.10+, numpy, scipy, matplotlib, torch (CPU sufficient).
+- Random seeds are fixed throughout; all results are reproducible in the order
+  above.

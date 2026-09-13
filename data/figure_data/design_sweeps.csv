@@ -1,0 +1,12 @@
+sweep,d_mean_um_or_phi,z,n_eol
+--- size sweep (fixed topology) ---
+size,0.1536,7.744,2252.0
+size,0.2048,7.744,3599.5
+size,0.256,7.744,4510.0
+size,0.3328,7.744,4566.5
+size,0.4096,7.744,4175.0
+--- coordination sweep (calendering) ---
+cal,0.48,6.413,3940.0
+cal,0.51,6.973,4200.0
+cal,0.54,7.558,4500.0
+cal,0.57,8.218,4600.0

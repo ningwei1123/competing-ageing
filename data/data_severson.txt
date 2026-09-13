@@ -1,0 +1,22 @@
+Two competing ageing channels of lithium iron phosphate cathodes
+External validation on the Severson et al. fast-charging dataset
+========================================================================
+
+Single-feature lifetime model (published vs reproduced RMSE, cycles):
+  published  : (103, 138, 196)
+  reproduced : (104, 138, 196)   [to within one cycle]
+
+Cycle-life distribution:
+  Severson  : n=123, median 742, range 300-2237
+  simulated : n=325, median 2014, range 322-8000
+
+Square-root interphase relation under fast charging:
+  k_sqrt median = -1.54e-03  (negative for every cell -> law fails)
+  frac k_sqrt positive = 0.0 over full fade to 80 % EOL
+
+Early-life fingerprint:
+  Spearman correlation = -0.75  (capacity-loss vs cycle life)
+
+Small-sample retraining (41-cell split):
+  ten-feature elastic-net test1 RMSE > single-feature 138  (overfits)
+  deep network MLP ~ elastic-net  (no gain over single feature)

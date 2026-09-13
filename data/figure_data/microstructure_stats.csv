@@ -1,0 +1,15 @@
+quantity,value
+box_mean,2.95785
+box_std,0.039871
+phi_real,0.55
+d_mean,0.256807
+d_med,0.216455
+d_share_sec,0.101028
+n_node_mean,1500.0
+n_edge_mean,5036.710769
+zmean,7.585095
+zmean_geo,7.851657
+isol0,0.034991
+direct_frac,0.492387
+edge_ret_eol,1.0
+lam_eol,0.012287
